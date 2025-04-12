@@ -40,7 +40,7 @@ resource "aws_iam_policy" "policy" {
 resource "aws_iam_user_policy_attachment" "user_policy_attachment" {
   # group      = aws_iam_group.example_group.name
 user = aws_iam_user.lb.name
-policy_arn = aws_iam_policy.policy.arn
+policy_arn = aws_iam_policy.policy.policy
 }
 
 resource "aws_iam_user_policy_attachment" "user_policy_attachment1" {
