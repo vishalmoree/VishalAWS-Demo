@@ -41,7 +41,7 @@ user = aws_iam_user.lb.name
 policy_arn = aws_iam_policy.policy.policy
 }
 
-resource "aws_iam_user_policy_attachment" "user_policy_attachment" {
+resource "aws_iam_user_policy_attachment" "user_policy_attachment1" {
   # group      = aws_iam_group.example_group.name
 user = aws_iam_user.lb1.name
 policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
