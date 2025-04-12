@@ -17,7 +17,7 @@ resource "aws_iam_user" "lb1" {
 }
 
 resource "aws_iam_policy" "policy" {
-  #name        = "Demo-policy"
+  name        = "Demo-policy"
   #description = "A Demo policy"
   policy      = jsonencode(
     {
@@ -40,7 +40,7 @@ resource "aws_iam_policy" "policy" {
 resource "aws_iam_user_policy_attachment" "user_policy_attachment" {
   # group      = aws_iam_group.example_group.name
 user = aws_iam_user.lb.name
-policy_arn = aws_iam_policy.policy.policy
+policy_arn = aws_iam_policy.policy.arn
 }
 
 resource "aws_iam_user_policy_attachment" "user_policy_attachment1" {
