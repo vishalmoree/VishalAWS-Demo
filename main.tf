@@ -12,11 +12,11 @@ provider "aws" {
 
   }
 
-resource "aws_instance" "example_server" {
-  ami           = "ami-0d188df7cedce7d90"
-  instance_type = "t3.micro"
+#resource "aws_instance" "example_server" {
+#  ami           = "ami-0d188df7cedce7d90"
+#  instance_type = "t3.micro"
 
-  tags = {
-    Name = "JacksBlogExample"
-  }
-}
+ # tags = {
+ #   Name = "JacksBlogExample"
+ # }
+#}
