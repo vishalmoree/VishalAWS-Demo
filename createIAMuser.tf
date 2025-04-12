@@ -19,7 +19,8 @@ resource "aws_iam_user" "lb1" {
 resource "aws_iam_policy" "policy" {
   #name        = "Demo-policy"
   #description = "A Demo policy"
-  policy      = {
+  policy      = jsonencode(
+    {
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -32,6 +33,7 @@ resource "aws_iam_policy" "policy" {
         }
     ]
 }
+)
 }
 
 
