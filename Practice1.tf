@@ -78,3 +78,8 @@ resource "aws_iam_group_policy" "my_user_policy" {
   
 })
 }
+
+resource "aws_iam_group_policy_attachment" "test-attach" {
+  group      = aws_iam_group.users.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+}
