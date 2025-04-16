@@ -1,5 +1,6 @@
 # create 2 new users and add them to 2 group attach policy to the groups 1 has read only access to ec2 and other has admin access to ec2
- 
+
+#creating 2 IAM users 
 resource "aws_iam_user" "group1" {
   name = "IAMUser-Read"
   path = "/system/"
