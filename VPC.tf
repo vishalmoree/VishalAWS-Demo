@@ -59,7 +59,7 @@ resource "aws_instance" "ec2Test" {
 resource "aws_instance" "ec2Dev" {
   ami           = "ami-03d500615acf7869a" 
   instance_type = "t2.micro"
-  key_name      = "demoec2keypair"  
+  key_name      = "NewEC2Pair"  
   subnet_id     = aws_subnet.DevSubnetPrivate.id
   tags = {
     Name = "ec2Dev"
