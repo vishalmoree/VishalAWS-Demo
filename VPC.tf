@@ -47,8 +47,8 @@ resource "aws_subnet" "DevSubnetPrivate" {
 
 #Creating EC2 instance in subnet
 resource "aws_instance" "ec2Test" {
-  ami           = "ami-03d500615acf7869a" 
-  instance_type = "t2.micro"
+  ami           = "ami-0d188df7cedce7d90" 
+  instance_type = "t3.micro"
   key_name      = "demoec2keypair"  
   subnet_id     = aws_subnet.TestSubnetPrivate.id
   tags = {
@@ -57,8 +57,8 @@ resource "aws_instance" "ec2Test" {
 }
 
 resource "aws_instance" "ec2Dev" {
-  ami           = "ami-03d500615acf7869a" 
-  instance_type = "t2.micro"
+  ami           = "ami-0d188df7cedce7d90" 
+  instance_type = "t3.micro"
   key_name      = "NewEC2Pair"  
   subnet_id     = aws_subnet.DevSubnetPrivate.id
   tags = {
