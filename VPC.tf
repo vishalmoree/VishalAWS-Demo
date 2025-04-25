@@ -51,6 +51,7 @@ resource "aws_instance" "ec2Test" {
   instance_type = "t2.micro"
   key_name      = "NewVPC"  
   subnet_id     = aws_subnet.TestSubnetPrivate.id
+  vpc_security_group_ids = [aws_security_group.allow_tls.id]
   tags = {
     Name = "ec2Test"
   }
@@ -61,6 +62,7 @@ resource "aws_instance" "ec2Dev" {
   instance_type = "t2.micro"
   key_name      = "NewVPC"  
   subnet_id     = aws_subnet.DevSubnetPrivate.id
+  #vpc_security_group_ids = [aws_security_group.allow_tls.id]
   tags = {
     Name = "ec2Dev"
   }
@@ -76,4 +78,5 @@ resource "aws_security_group" "allow_tls" {
     Name = "allow_tls"
   }
 }
+
 
