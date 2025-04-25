@@ -12,7 +12,7 @@ resource "aws_vpc" "main" {
 resource "aws_subnet" "TestSubnetPublic" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.2.0/24"
-  availability_zone = "eu-north-1a"
+  availability_zone = "us-east-1a"
   tags = {
     Name = "TestSubnetPublic"
   }
@@ -21,7 +21,7 @@ resource "aws_subnet" "TestSubnetPublic" {
 resource "aws_subnet" "TestSubnetPrivate" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.3.0/24"
-  availability_zone = "eu-north-1a"
+  availability_zone = "us-east-1a"
   tags = {
     Name = "TestSubnetPrivate"
   }
@@ -30,7 +30,7 @@ resource "aws_subnet" "TestSubnetPrivate" {
 resource "aws_subnet" "DevSubnetPublic" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.4.0/24"
-  availability_zone = "eu-north-1b"
+  availability_zone = "us-east-1b"
   tags = {
     Name = "DevSubnetPublic"
   }
@@ -39,7 +39,7 @@ resource "aws_subnet" "DevSubnetPublic" {
 resource "aws_subnet" "DevSubnetPrivate" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.5.0/24"
-  availability_zone = "eu-north-1b"
+  availability_zone = "us-east-1b"
   tags = {
     Name = "DevSubnetPrivate"
   }
@@ -47,8 +47,8 @@ resource "aws_subnet" "DevSubnetPrivate" {
 
 #Creating EC2 instance in subnet
 resource "aws_instance" "ec2Test" {
-  ami           = "ami-0d188df7cedce7d90" 
-  instance_type = "t3.micro"
+  ami           = "ami-05f08ad7b78afd8cd" 
+  instance_type = "t2.micro"
   key_name      = "demoec2keypair"  
   subnet_id     = aws_subnet.TestSubnetPrivate.id
   tags = {
@@ -57,11 +57,23 @@ resource "aws_instance" "ec2Test" {
 }
 
 resource "aws_instance" "ec2Dev" {
-  ami           = "ami-0d188df7cedce7d90" 
-  instance_type = "t3.micro"
+  ami           = "ami-05f08ad7b78afd8cd" 
+  instance_type = "t2.micro"
   key_name      = "NewEC2Pair"  
   subnet_id     = aws_subnet.DevSubnetPrivate.id
   tags = {
     Name = "ec2Dev"
   }
 }
+
+#Creating Security Groups
+resource "aws_security_group" "allow_tls" {
+  name        = "allow_tls"
+  description = "Allow TLS inbound traffic and all outbound traffic"
+  vpc_id      = aws_vpc.main.id
+
+  tags = {
+    Name = "allow_tls"
+  }
+}
+
