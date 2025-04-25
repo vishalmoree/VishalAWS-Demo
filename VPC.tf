@@ -49,7 +49,7 @@ resource "aws_subnet" "DevSubnetPrivate" {
 resource "aws_instance" "ec2Test" {
   ami           = "ami-05f08ad7b78afd8cd" 
   instance_type = "t2.micro"
-  key_name      = "demoec2keypair"  
+  key_name      = "NewVPC"  
   subnet_id     = aws_subnet.TestSubnetPrivate.id
   tags = {
     Name = "ec2Test"
@@ -59,7 +59,7 @@ resource "aws_instance" "ec2Test" {
 resource "aws_instance" "ec2Dev" {
   ami           = "ami-05f08ad7b78afd8cd" 
   instance_type = "t2.micro"
-  key_name      = "NewEC2Pair"  
+  key_name      = "NewVPC"  
   subnet_id     = aws_subnet.DevSubnetPrivate.id
   tags = {
     Name = "ec2Dev"
