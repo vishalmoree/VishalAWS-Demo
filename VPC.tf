@@ -62,8 +62,8 @@ resource "aws_instance" "ec2Dev" {
   instance_type = "t2.micro"
   key_name      = "NewVPC"  
   subnet_id     = aws_subnet.DevSubnetPrivate.id
-  #vpc_security_group_ids = [aws_security_group.allow_tls.id]
-  tags = {
+  vpc_security_group_ids = [aws_security_group.allow_tls.id,aws_security_group.allow_all.id]
+    tags = {
     Name = "ec2Dev"
   }
 }
@@ -79,4 +79,14 @@ resource "aws_security_group" "allow_tls" {
   }
 }
 
+
+resource "aws_security_group" "allow_all" {
+  name        = "allow_all"
+  description = "Allow TLS inbound traffic and all outbound traffic"
+  vpc_id      = aws_vpc.main.id
+
+  tags = {
+    Name = "allow_all"
+  }
+}
 
