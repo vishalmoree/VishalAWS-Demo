@@ -65,3 +65,15 @@ resource "aws_instance" "ec2Dev" {
     Name = "ec2Dev"
   }
 }
+
+#Creating Security Groups
+resource "aws_security_group" "allow_tls" {
+  name        = "allow_tls"
+  description = "Allow TLS inbound traffic and all outbound traffic"
+  vpc_id      = aws_vpc.main.id
+
+  tags = {
+    Name = "allow_tls"
+  }
+}
+
