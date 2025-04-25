@@ -93,7 +93,7 @@ resource "aws_vpc_security_group_ingress_rule" "allows_RDP" {
   #cidr_ipv4         = aws_vpc.main.cidr_block
   cidr_ipv4         = "0.0.0.0/0"
   from_port         = 3389
-  ip_protocol       = "rdp"
+  ip_protocol       = "tcp"
   to_port           = 3389
 }
 
