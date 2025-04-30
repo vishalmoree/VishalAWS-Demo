@@ -107,6 +107,14 @@ resource "aws_security_group" "allow_all" {
   }
 }
 
+#creating internet gateway
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+ 
+  tags = {
+    Name = "main"
+  }
+}
 
 #Creating ALB in Public subnets
 resource "aws_lb" "test" {
