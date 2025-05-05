@@ -127,4 +127,23 @@ resource "aws_lb" "test" {
   enable_deletion_protection = true
 }
 
-
+#Creating Target groups
+resource "aws_lb_target_group" "test_targetgroup" {
+  name     = "tf-test-lb-tg"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = aws_vpc.main.id
+}
+ 
+#attaching instances to Target Group
+resource "aws_lb_target_group_attachment" "test_attachment1" {
+  target_group_arn = aws_lb_target_group.test_targetgroup.arn
+  target_id        = aws_instance.ec2Dev.id
+  port             = 80
+}
+ 
+resource "aws_lb_target_group_attachment" "test_attachment2" {
+  target_group_arn = aws_lb_target_group.test_targetgroup.arn
+  target_id        = aws_instance.ec2Test.id
+  port             = 80
+}
