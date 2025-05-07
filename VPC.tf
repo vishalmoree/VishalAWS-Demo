@@ -166,7 +166,7 @@ resource "aws_lb_listener" "listener_front_end" {
 resource "aws_eip" "nat_eip" {
   #instance = aws_instance.ec2Dev.id
   #domain   = "vpc"
-  provider = aws.south
+  provider = "aws.south"
   network_border_group = "ap-south-1"
   }
  
