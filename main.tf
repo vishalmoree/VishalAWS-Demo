@@ -12,10 +12,10 @@ provider "aws" {
   #alias  = "east"
   }
 
-provider "aws" {
-  region  = "ap-south-1"
-  alias  = "south"
-  }
+# provider "aws" {
+#   region  = "ap-south-1"
+#   alias  = "south"
+#   }
 
 
 #resource "aws_instance" "example_server" {
