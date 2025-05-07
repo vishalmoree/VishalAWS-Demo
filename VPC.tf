@@ -164,7 +164,7 @@ resource "aws_lb_listener" "listener_front_end" {
 
 #Creating Elastic IP
 resource "aws_eip" "nat_eip" {
-  instance = aws_instance.ec2Dev.id
+  #instance = aws_instance.ec2Dev.id
   #domain   = "vpc"
 }
  
@@ -174,8 +174,16 @@ resource "aws_nat_gateway" "nat" {
   subnet_id     = aws_subnet.DevSubnetPublic.id
   #vpc_id        = aws_vpc.main.id
   tags = {
-    Name = "my-nat-gateway"
+    Name = "my-nat-gatewayDev"
   }
 }
  
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.nat_eip.id
+  subnet_id     = aws_subnet.TestSubnetPublic.id
+  #vpc_id        = aws_vpc.main.id
+  tags = {
+    Name = "my-nat-gatewayTest"
+  }
+} 
  
