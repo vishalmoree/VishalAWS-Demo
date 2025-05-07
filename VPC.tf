@@ -163,11 +163,11 @@ resource "aws_lb_listener" "listener_front_end" {
 }
 
 #Creating Elastic IP
-resource "aws_eip" "nat_eip" {
+#resource "aws_eip" "nat_eip" {
   #instance = aws_instance.ec2Dev.id
   #domain   = "vpc"
-  network_border_group = "ap-south-1"
-}
+  #network_border_group = "ap-south-1"
+#}
  
 # # Create the NAT Gateway
 # resource "aws_nat_gateway" "natDev" {
