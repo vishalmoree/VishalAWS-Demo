@@ -166,10 +166,11 @@ resource "aws_lb_listener" "listener_front_end" {
 resource "aws_eip" "nat_eip" {
   #instance = aws_instance.ec2Dev.id
   #domain   = "vpc"
+  network_border_group = "ap-south-1"
 }
  
 # Create the NAT Gateway
-resource "aws_nat_gateway" "nat" {
+resource "aws_nat_gateway" "natDev" {
   allocation_id = aws_eip.nat_eip.id
   subnet_id     = aws_subnet.DevSubnetPublic.id
   #vpc_id        = aws_vpc.main.id
@@ -178,7 +179,7 @@ resource "aws_nat_gateway" "nat" {
   }
 }
  
-resource "aws_nat_gateway" "nat" {
+resource "aws_nat_gateway" "natTest" {
   allocation_id = aws_eip.nat_eip.id
   subnet_id     = aws_subnet.TestSubnetPublic.id
   #vpc_id        = aws_vpc.main.id
