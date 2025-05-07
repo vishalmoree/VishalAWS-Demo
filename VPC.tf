@@ -124,7 +124,7 @@ resource "aws_lb" "test" {
   security_groups    = [aws_security_group.allow_tls.id]
   subnets            = [aws_subnet.TestSubnetPublic.id,aws_subnet.DevSubnetPublic.id]
 
-  enable_deletion_protection = false
+  #enable_deletion_protection = false
 }
 
 #Creating Target groups
@@ -150,7 +150,7 @@ resource "aws_lb_target_group_attachment" "test_attachment2" {
 
 #creating Listener in ALB
 resource "aws_lb_listener" "listener_front_end" {
-  load_balancer_arn = aws_lb.ALB1.arn
+  load_balancer_arn = aws_lb.test.arn
   port              = "80"
   protocol          = "HTTP"
   #ssl_policy        = "ELBSecurityPolicy-2016-08"
@@ -161,3 +161,21 @@ resource "aws_lb_listener" "listener_front_end" {
     target_group_arn = aws_lb_target_group.test_targetgroup.arn
   }
 }
+
+#Creating Elastic IP
+resource "aws_eip" "nat_eip" {
+  instance = aws_instance.ec2Dev.id
+  #domain   = "vpc"
+}
+ 
+# Create the NAT Gateway
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.nat_eip.id
+  subnet_id     = aws_subnet.DevSubnetPublic.id
+  #vpc_id        = aws_vpc.main.id
+  tags = {
+    Name = "my-nat-gateway"
+  }
+}
+ 
+ 
