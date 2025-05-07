@@ -9,8 +9,14 @@ terraform{
 
 provider "aws" {
   region  = "us-east-1"
-
+  alias  = "east"
   }
+
+provider "aws" {
+  region  = "ap-south-1"
+  alias  = "south"
+  }
+
 
 #resource "aws_instance" "example_server" {
 #  ami           = "ami-0d188df7cedce7d90"
