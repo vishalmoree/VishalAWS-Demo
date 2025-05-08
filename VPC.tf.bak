@@ -194,18 +194,18 @@ resource "aws_nat_gateway" "natTest" {
 } 
 
 #Creating Route table
-resource "aws_route_table" "example" {
-  vpc_id = aws_vpc.main.id
+# resource "aws_route_table" "example" {
+#   vpc_id = aws_vpc.main.id
 
-  route {
-    cidr_block = aws_vpc.main.cidr_block
+#   route {
+#     cidr_block = aws_vpc.main.cidr_block
     
-  }
+#   }
 
-  tags = {
-    Name = "example"
-  }
-}
+#   tags = {
+#     Name = "example"
+#   }
+# }
 
 # Creating Route tables for Public Subnets
 resource "aws_route_table" "public_route" {
