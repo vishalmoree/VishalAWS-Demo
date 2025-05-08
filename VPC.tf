@@ -223,7 +223,7 @@ resource "aws_route_table_association" "a" {
   route_table_id = aws_route_table.public_route.id
 }
  
-resource "aws_route_table_association" "a" {
+resource "aws_route_table_association" "b" {
   subnet_id      = aws_subnet.TestSubnetPublic.id
   route_table_id = aws_route_table.public_route.id
 }
