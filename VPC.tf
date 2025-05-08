@@ -192,4 +192,38 @@ resource "aws_nat_gateway" "natTest" {
     Name = "my-nat-gatewayTest"
   }
 } 
+
+#Creating Route table
+resource "aws_route_table" "example" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = aws_vpc.main.cidr_block
+    
+  }
+
+  tags = {
+    Name = "example"
+  }
+}
+
+# Creating Route tables for Public Subnets
+resource "aws_route_table" "public_route" {
+  vpc_id = aws_vpc.main.id
  
+  # route {
+  #   cidr_block = aws_vpc.test_vpc.cidr_block
+  #   network_interface_id = aws_network_interface.test_public.id
+  # }
+}
+ 
+# associating route table with Public subnet 1
+resource "aws_route_table_association" "a" {
+  subnet_id      = aws_subnet.DevSubnetPublic.id
+  route_table_id = aws_route_table.public_route.id
+}
+ 
+resource "aws_route_table_association" "b" {
+  subnet_id      = aws_subnet.TestSubnetPublic.id
+  route_table_id = aws_route_table.public_route.id
+}
